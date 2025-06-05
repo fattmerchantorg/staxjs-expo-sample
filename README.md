@@ -1,50 +1,20 @@
-# Welcome to your Expo app 👋
+## Stax.js w/Expo sample
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a small sample showcasing two ways to use Stax.js from a React Native w/Expo application.
 
-## Get started
+### In-App Browser
 
-1. Install dependencies
+This uses the `expo-web-browser` library to load an `SFSafariWebViewController` or `ChromeCustomTab` depending on the platform.
 
-   ```bash
-   npm install
-   ```
+The preferred way of showing a payment form to your users. This explicitly loads a page that makes it clear that this is happening in a secure environment. This also makes it easier to pass Apple review as you are linking "out" of your application. The sample is located in [browser.tsx](https://github.com/fattmerchantorg/staxjs-expo-sample/blob/main/app/(tabs)/browser.tsx).
 
-2. Start the app
+#### Auto-closing the In-App Browser Window
 
-   ```bash
-   npx expo start
-   ```
+You can listen to the In-App Browser using the [Expo Linking library](https://docs.expo.dev/versions/latest/sdk/linking/#linkingaddeventlistenertype-handler) and can close the browser with [`WebBrowser.dismissBrowser()`](https://docs.expo.dev/versions/latest/sdk/webbrowser/#webbrowserdismissbrowser). This is not showcased in this app because it is highly dependant on how your page behaves.
 
-In the output, you'll find options to open the app in a
+### Embedded WebView
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Alternatively, you can embed a WebView within your UI directly. This may be easiest and look the most seamless. This uses the [`react-native-webview`](https://docs.expo.dev/versions/latest/sdk/webview/) to display a `WkWebView` on iOS and a `WebView` on Android. 
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+#### App Review Note
+There may be issues with your app review if you do not clearly handle a device that is offline. Make sure to handle the case when the WebView is unable to be loaded in order to bypass review issues with Apple and Google.
