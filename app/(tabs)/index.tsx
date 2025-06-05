@@ -6,6 +6,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview'; // Fixed: Add curly braces
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const url = 'https://app.staxpayments.com/#/pay/Fattlabs-Prod---NMI-3e922b7cb480?total=0.01&r=https://staxpayments.com'
 
 export default function WebViewScreen() {
   return (
@@ -28,7 +29,7 @@ export default function WebViewScreen() {
       </ThemedText>
       <ThemedView style={styles.container}>
         <WebView
-          source={{ uri: 'https://staxpayments.com' }}
+          source={{ uri: url }}
           style={styles.webview}
           javaScriptEnabled={true}
           domStorageEnabled={true}

@@ -8,7 +8,8 @@ import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 const openBrowser = async () => {
   try {
     // TODO: Insert your web address below
-    const result = await WebBrowser.openBrowserAsync('https://staxpayments.com');
+    const url = 'https://app.staxpayments.com/#/pay/Fattlabs-Prod---NMI-3e922b7cb480?total=0.01&r=https://staxpayments.com'
+    const result = await WebBrowser.openBrowserAsync(url);
     console.log(result);
   } catch (error) {
     console.error('Error opening browser:', error);
